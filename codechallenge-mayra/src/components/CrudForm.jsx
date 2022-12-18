@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 const initialForm = {
-  name: "",
-  imdbRating: "",
+  title: "",
+  price: "",
   id: null,
 };
 
@@ -21,18 +21,20 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
+      [e.target.price]: e.target.value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!form.name || !form.constellation) {
+    if (!form.title || !form.price) {
       alert("Datos Incompletos");
       return;
     }
     if (form.id === null) {
       createData(form);
     } else {
+      //console.log(form.title);
       updateData(form);
     }
 
@@ -50,10 +52,17 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="name"
-          placeholder="Buscar pelicula"
+          name="title"
+          placeholder="Producto"
           onChange={handleChange}
-          value={form.name}
+          value={form.title}
+        />
+        <input
+          type="text"
+          name="price"
+          placeholder="Precio"
+          onChange={handleChange}
+          value={form.price}
         />
 
         <input type="submit" value="Agregar" />

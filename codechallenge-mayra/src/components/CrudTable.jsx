@@ -4,12 +4,13 @@ import CrudTableRow from "./CrudTableRow";
 const CrudTable = ({ data, setDataToEdit, deleteData }) => {
   return (
     <div>
-      <h3>Peliculas por ver</h3>
+      <h3>Lista de productos</h3>
       <table>
         <thead>
           <tr>
-            <th>Nombre</th>
-            <th>Rating IMDB</th>
+            {/* <th></th> */}
+            <th>Producto</th>
+            <th>Precio</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -25,7 +26,7 @@ const CrudTable = ({ data, setDataToEdit, deleteData }) => {
             ))
           ) : (
             <tr>
-              <td colSpan="3">Sin Datos</td>
+              <td colSpan="3">Aun no has agregado ninguna</td>
             </tr>
           )}
         </tbody>

@@ -40,6 +40,7 @@ export const helpHttp = () => {
   };
 
   const put = (url, options = {}) => {
+    //console.log(options.body);
     options.method = "PUT";
     return customFetch(url, options);
   };

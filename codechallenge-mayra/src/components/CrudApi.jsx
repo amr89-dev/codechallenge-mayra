@@ -6,22 +6,23 @@ import Loader from "./Loader";
 import Message from "./Message";
 
 const CrudApi = () => {
-  const [db, setDb] = useState([]);
+  const [db, setDb] = useState(null);
   const [dataToEdit, setDataToEdit] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  let url =
-    "https://yts.mx/api/v2/list_movies.json?page=1&sort_by=year&limit=50";
+  let url = "https://dummyjson.com/products?limit=10";
   let api = helpHttp();
 
   useEffect(() => {
     setLoading(true);
+
     api.get(url).then((res) => {
-      const tempList = res.data.movies;
+      //console.log(res);
+      //const tempList = res.data.movies;
       //console.log(tempList);
       if (!res.err) {
-        setDb(tempList);
+        setDb(res.products);
         setError(null);
       } else {
         setDb(null);
@@ -33,33 +34,43 @@ const CrudApi = () => {
   }, [url]);
 
   const createData = (data) => {
-    data.id = Date.now();
     //console.log(data);
-
+    //data.id = Date.now();
+    let { title, price } = data;
     let options = {
-      body: data,
+      body: {
+        id: Date.now(),
+        title,
+        price,
+      },
       headers: { "content-type": "application/json" },
     };
 
-    api.post(url, options).then((res) => {
-      console.log(res);
+    api.post("https://dummyjson.com/products/add", options).then((res) => {
+      // res.id = Date.now();
       if (!res.err) {
         setDb([...db, res]);
       } else {
+        console.log("ocurio un eror");
         setError(res);
       }
     });
   };
 
   const updateData = (data) => {
-    let endpoint = `${url}/${data.id}`;
-
+    let { title, price } = data;
+    let endpoint = `https://dummyjson.com/products/${data.id}`;
+    //console.log(data.id);
     let options = {
-      body: data,
+      method: "PUT",
       headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        title,
+        price,
+      }),
     };
 
-    api.put(endpoint, options).then((res) => {
+    fetch(endpoint, options).then((res) => {
       // console.log(res);
       if (!res.err) {
         let newData = db.map((el) => (el.id === data.id ? data : el));
@@ -75,7 +86,7 @@ const CrudApi = () => {
       `¿Estas seguro de eliminar el registro con id ${id}?`
     );
 
-    let endpoint = `${url}/${id}`;
+    let endpoint = `https://dummyjson.com/products/${id}`;
 
     let options = {
       headers: { "content-type": "application/json" },
@@ -96,7 +107,6 @@ const CrudApi = () => {
 
   return (
     <>
-      <h2>Buscador</h2>
       <article className="grid-1-2">
         <CrudForm
           createData={createData}

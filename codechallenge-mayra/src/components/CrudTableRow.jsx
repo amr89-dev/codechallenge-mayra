@@ -2,16 +2,16 @@ import React from "react";
 
 const CrudTableRow = ({ el, setDataToEdit, deleteData }) => {
   //console.log(el);
-  let { title_long, rating, id, small_cover_image } = el;
+  let { title, price, id, thumbnail } = el;
   return (
     <tr>
-      <td>
+      {/* <td>
         <div>
-          <img src={small_cover_image} alt="coverSmall" />
+          <img src={thumbnail} alt="coverSmall" />
         </div>
-      </td>
-      <td>{title_long}</td>
-      <td>{rating}</td>
+      </td> */}
+      <td>{title}</td>
+      <td>{`$${price}`}</td>
       <td>
         <button onClick={() => setDataToEdit(el)}>Editar</button>
         <button onClick={() => deleteData(id)}>Eliminar</button>
