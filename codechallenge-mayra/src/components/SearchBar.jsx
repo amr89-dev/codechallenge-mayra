@@ -15,7 +15,7 @@ function SearchBar({ items, onItemSelected }) {
 
   return (
     <div>
-      {results.length > 0 && <div>{results.length} results</div>}
+      {results.length1 > 0 && <div>{results.length} results</div>}
       <label htmlFor="">
         Buscador: <input type="text" onChange={handleChange} value={query} />
       </label>
