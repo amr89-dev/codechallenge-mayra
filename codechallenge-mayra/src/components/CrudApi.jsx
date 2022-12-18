@@ -4,6 +4,7 @@ import CrudForm from "./CrudForm";
 import CrudTable from "./CrudTable";
 import Loader from "./Loader";
 import Message from "./Message";
+import SearchBar from "./SearchBar";
 
 const CrudApi = () => {
   const [db, setDb] = useState(null);
@@ -107,6 +108,7 @@ const CrudApi = () => {
 
   return (
     <>
+      {db && <SearchBar items={db} />}
       <article className="grid-1-2">
         <CrudForm
           createData={createData}

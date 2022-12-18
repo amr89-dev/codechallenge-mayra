@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Results from "./results";
 
-function SearchBar({ items, onItemSelected }) {
+function SearchBar({ items }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 
@@ -15,9 +15,10 @@ function SearchBar({ items, onItemSelected }) {
 
   return (
     <div>
-      {results.length1 > 0 && <div>{results.length} results</div>}
+      {results.length > 0 && <div>{results.length} resultados</div>}
       <label htmlFor="">
-        Buscador: <input type="text" onChange={handleChange} value={query} />
+        <h3>Buscador:</h3>{" "}
+        <input type="text" onChange={handleChange} value={query} />
       </label>
       <Results
         items={items}

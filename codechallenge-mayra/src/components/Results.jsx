@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 
-function Results({ items, onItemSelected, query, onResultsCalculated }) {
+function Results({ items, query, onResultsCalculated }) {
   const [results, setResults] = useState([]);
   const filteredItems = useMemo(() => findMatch(items, query), [items, query]);
 
