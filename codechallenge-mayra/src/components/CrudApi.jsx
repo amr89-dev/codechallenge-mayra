@@ -11,26 +11,25 @@ const CrudApi = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  let url = "https://yts.mx/api/v2/list_movies.json?page=1&limit=50";
+  let url =
+    "https://yts.mx/api/v2/list_movies.json?page=1&sort_by=year&limit=50";
   let api = helpHttp();
 
   useEffect(() => {
     setLoading(true);
-    helpHttp()
-      .get(url)
-      .then((res) => {
-        const tempList = res.data.movies;
-        console.log(tempList);
-        if (!res.err) {
-          setDb(tempList);
-          setError(null);
-        } else {
-          setDb(null);
-          setError(res);
-        }
+    api.get(url).then((res) => {
+      const tempList = res.data.movies;
+      //console.log(tempList);
+      if (!res.err) {
+        setDb(tempList);
+        setError(null);
+      } else {
+        setDb(null);
+        setError(res);
+      }
 
-        setLoading(false);
-      });
+      setLoading(false);
+    });
   }, [url]);
 
   const createData = (data) => {

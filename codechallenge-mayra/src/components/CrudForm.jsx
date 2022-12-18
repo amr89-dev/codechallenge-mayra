@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const initialForm = {
   name: "",
-  constellation: "",
+  imdbRating: "",
   id: null,
 };
 
