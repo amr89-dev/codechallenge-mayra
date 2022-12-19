@@ -2,7 +2,7 @@ import React from "react";
 
 const CrudTableRow = ({ el, setDataToEdit, deleteData }) => {
   //console.log(el);
-  let { title, price, id, thumbnail } = el;
+  let { title, price, id } = el;
   return (
     <tr>
       {/* <td>

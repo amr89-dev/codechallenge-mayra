@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Results from "./results";
 
-function SearchBar({ items }) {
+function SearchBar({ items, onItemSelected }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 
@@ -12,8 +12,6 @@ function SearchBar({ items }) {
   function handleResults(items) {
     setResults(items);
   }
-  function handleItemSelected() {}
-
   return (
     <div>
       {results.length > 0 && <div>{results.length} resultados</div>}
@@ -23,7 +21,7 @@ function SearchBar({ items }) {
       </label>
       <Results
         items={items}
-        onItemSelected={handleItemSelected}
+        onItemSelected={onItemSelected}
         query={query.toLowerCase()}
         onResultsCalculated={handleResults}
       />

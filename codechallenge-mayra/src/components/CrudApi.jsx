@@ -113,10 +113,13 @@ const CrudApi = () => {
       });
     } else return;
   };
-
+  function handleItemSelected(item) {
+    //updateData(item);
+    setDataToEdit(item);
+  }
   return (
     <>
-      {db && <SearchBar items={db} />}
+      {db && <SearchBar items={db} onItemSelected={handleItemSelected} />}
       <article className="grid-1-2">
         <CrudForm
           createData={createData}
