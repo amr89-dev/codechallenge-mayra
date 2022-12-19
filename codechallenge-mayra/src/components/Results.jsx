@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 
-function Results({ items, query, onResultsCalculated }) {
+function Results({ items, query, onItemSelected, onResultsCalculated }) {
   const [results, setResults] = useState([]);
   const filteredItems = useMemo(() => findMatch(items, query), [items, query]);
 
@@ -21,7 +21,7 @@ function Results({ items, query, onResultsCalculated }) {
   return (
     <div>
       {query !== ""
-        ? filteredItems.map((item) => <div key={item.id}>{item.title}</div>)
+        ? filteredItems.map((item) => <div key={item.id}>{item.title} </div>)
         : ""}
     </div>
   );

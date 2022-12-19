@@ -12,6 +12,7 @@ function SearchBar({ items }) {
   function handleResults(items) {
     setResults(items);
   }
+  function handleItemSelected() {}
 
   return (
     <div>
@@ -22,7 +23,7 @@ function SearchBar({ items }) {
       </label>
       <Results
         items={items}
-        onItemSelected={() => {}}
+        onItemSelected={handleItemSelected}
         query={query.toLowerCase()}
         onResultsCalculated={handleResults}
       />

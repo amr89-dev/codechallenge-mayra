@@ -11,9 +11,17 @@ const CrudApi = () => {
   const [dataToEdit, setDataToEdit] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [counter, setCounter] = useState(0);
 
-  let url = "https://dummyjson.com/products?limit=10";
+  let url = `https://dummyjson.com/products?limit=10&skip=${counter}`;
   let api = helpHttp();
+
+  const sumar = () => {
+    setCounter(counter + 1);
+  };
+  const restar = () => {
+    setCounter(counter - 1);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -133,6 +141,10 @@ const CrudApi = () => {
           />
         )}
       </article>
+      <div>
+        {counter >= 1 && <button onClick={restar}>Atras</button>}
+        <button onClick={sumar}>Adelante</button>
+      </div>
     </>
   );
 };
